@@ -33,6 +33,13 @@ class Format(models.Model):
         return self.name
 
 
+class Language(models.Model):
+    name = models.CharField(max_length=16, unique=True)
+
+    def __str__(self):
+        return self.name
+
+
 class Resource(models.Model):
     author = models.CharField(max_length=128)
     title = models.CharField(max_length=128)
@@ -45,6 +52,7 @@ class Resource(models.Model):
     ])
     tags = models.ManyToManyField(Tag)
     formats = models.ManyToManyField(Format)
+    languages = models.ManyToManyField(Language)
 
     def __str__(self):
         return f"{self.id}: {self.title}"
