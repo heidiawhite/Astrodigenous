@@ -9,12 +9,16 @@ def home(request):
 
 def search(request):
     search_text = request.POST.get("searchText", "")
-    # TODO: Do actual Search
+    pub_format = request.POST.get("contentType", "")
+
     results = Resource.objects.filter(
         Q(author__icontains=search_text) |
         Q(title__icontains=search_text) |
         Q(summary__icontains=search_text)
     )
+
+    if pub_format:
+        results = results.filter(formats__name__icontains=pub_format)
 
     return render(request, "results.html", context={
         'results': results,

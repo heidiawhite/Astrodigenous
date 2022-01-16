@@ -37,16 +37,16 @@
                         <label class="form-check-label" for="ct-text">Text</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="contentType" id="ct-image" value="image">
-                        <label class="form-check-label" for="ct-image">Image</label>
-                    </div>
-                    <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="contentType" id="ct-audio" value="audio">
                         <label class="form-check-label" for="ct-audio">Audio</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="contentType" id="ct-video" value="video">
-                        <label class="form-check-label" for="ct-video">Video</label>
+                        <input class="form-check-input" type="radio" name="contentType" id="ct-visual" value="visual">
+                        <label class="form-check-label" for="ct-visual">Visual</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="contentType" id="ct-all" value="">
+                        <label class="form-check-label" for="ct-all">All</label>
                     </div>
                 </div>
                 <button type="submit" id="search-form-submit" class="btn btn-primary">Submit</button>
@@ -63,7 +63,14 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ result.title }}</h5>
                         <h6 class="card-subtitle mb-2 text-muted">{{ result.author }}</h6>
-                        <p class="card-text"></p>
+                        <p class="card-text">
+                          <dl class="row">
+                            <dt class="col-sm-2">Formats:</dt>
+                            <dd class="col-sm-10">
+                              {{ result.formats.all | join:", " }}
+                            </dd>
+                          </dl>
+                        </p>
                         <a href="#" class="card-link">View resource</a>
                     </div>
                 </div>
