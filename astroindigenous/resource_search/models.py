@@ -26,6 +26,13 @@ class Tag(models.Model):
         return self.name
 
 
+class Format(models.Model):
+    name = models.CharField(max_length=16, unique=True)
+
+    def __str__(self):
+        return self.name
+
+
 class Resource(models.Model):
     author = models.CharField(max_length=128)
     title = models.CharField(max_length=128)
@@ -37,6 +44,7 @@ class Resource(models.Model):
         less_than_current_year, MinValueValidator(1970), MaxValueValidator(9999)
     ])
     tags = models.ManyToManyField(Tag)
+    formats = models.ManyToManyField(Format)
 
     def __str__(self):
         return f"{self.id}: {self.title}"
