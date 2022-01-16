@@ -16,7 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+import resource_search
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('resource_search.urls'))
+    path('q', resource_search.views.search),
+    path('', resource_search.views.home),
 ]

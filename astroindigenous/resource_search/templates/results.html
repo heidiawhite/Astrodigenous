@@ -51,6 +51,21 @@
 				</div>
 				<button type="submit" id="search-form-submit" class="btn btn-primary">Submit</button>
 			</form>
+
+			<hr>
+
+			<h3>Results:</h3>
+			<div id="search-results-container">
+                          {% if results %}
+                            {% for result in results %}
+                               <span>
+                                 Found {{ result.content_type }} file number {{ result.id }}: <b> {{ result.name }} </b>
+                               </span><br>
+                            {% endfor %}
+                          {% else %}
+                            <span> No Results found for {{ search_text }}, please try again! </span>
+                          {% endif %}
+			</div>
 		</div>
 		<!-- Bootstrap JS Bundle with Popper -->
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
