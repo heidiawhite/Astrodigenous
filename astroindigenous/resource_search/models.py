@@ -47,9 +47,7 @@ class Resource(models.Model):
     rec_type = models.CharField(max_length=128)
     summary = models.TextField(blank = True)
     indigenous_author = models.BooleanField(choices = INDIGENOUS_AUTHOR_CHOICES, null = True) 
-    year = models.IntegerField(blank=True, validators=[
-        less_than_current_year, MinValueValidator(1970), MaxValueValidator(9999)
-    ])
+    year = models.CharField(blank=True, max_length=32)
     tags = models.ManyToManyField(Tag)
     formats = models.ManyToManyField(Format)
     languages = models.ManyToManyField(Language)
