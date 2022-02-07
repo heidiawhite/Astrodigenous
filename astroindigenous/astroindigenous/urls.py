@@ -23,3 +23,8 @@ urlpatterns = [
     path('q', search),
     path('', home)
 ]
+
+#changes the titles of the Django admin pages
+admin.site.site_header  =  "Astroindigenous Resource Database"  
+admin.site.site_title  =  "Astroindigenous Resource DB"
+admin.site.index_title  =  "Admin Portal"
