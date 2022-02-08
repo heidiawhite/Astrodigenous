@@ -11,7 +11,7 @@ with open('resource_table.csv') as csvfile:
         id = int(row[id_key], 10)
   
         if id > 146:
-            raise RuntimeError("Done Processing 10 rows")
+            raise RuntimeError("Done processing 146 rows!")
   
         try:
             resource = Resource.objects.get(pk=id)
