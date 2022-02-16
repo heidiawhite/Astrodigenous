@@ -30,15 +30,15 @@ with open('resource_table.csv') as csvfile:
         resource.save()
         pub_langs = row["publ_lang"]
         for pub_lang in pub_langs.split(", "):
-            (language, create) = Language.objects.get_or_create(name=pub_lang)
+            (language, create) = Language.objects.get_or_create(name=pub_lang.strip())
             resource.languages.add(language)
-            (lang, create) = Tag.objects.get_or_create(name=pub_lang)
+            (lang, create) = Tag.objects.get_or_create(name=pub_lang.strip())
             print(lang)
             resource.tags.add(lang)
             resource.save()
         traditions = row["nation-tradition"]
         for trad in traditions.split(", "):
-            (community, create) = Tag.objects.get_or_create(name=trad)
+            (community, create) = Tag.objects.get_or_create(name=trad.strip())
             resource.tags.add(community)
             resource.save()
         formats = row["format"]
