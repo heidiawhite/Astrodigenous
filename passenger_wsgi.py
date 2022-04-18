@@ -1,5 +1,5 @@
 import sys, os
-INTERP = "/home/dh_bv2ah4/heidiwhite.net/venv/bin/python3"
+INTERP = "/home/dh_b6czyh/resource.astrodigenous.ca/venv/bin/python3"
 
 #INTERP is present twice so that the new python interpreter 
 #knows the actual executable path 
