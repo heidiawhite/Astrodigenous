@@ -52,5 +52,8 @@ class Resource(models.Model):
     formats = models.ManyToManyField(Format)
     languages = models.ManyToManyField(Language)
 
+    def links_as_list(self):
+        return self.links.split(',')
+
     def __str__(self):
         return f"{self.id}: {self.title}"

@@ -46,7 +46,13 @@
 			  <dd class="col-sm-9">{{ result.summary }}</dd>
 
 			  <dt class="col-sm-3">Links</dt>
-			  <dd class="col-sm-9"><a href="{{ result.links }}">{{ result.links }}</a></dd>
+			  <dd class="col-sm-9">
+   			    <ul>
+			      {% for link in result.links_as_list %}
+			      <li><a href="{{ link }}">{{ link }}</a></li>
+			      {% endfor %}
+			    </ul>
+			  </dd>
 			</dl>
 
 
