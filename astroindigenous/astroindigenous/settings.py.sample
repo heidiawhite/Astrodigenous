@@ -20,12 +20,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-9pwmk)oq(c9dm&1wf9gne%$cl9cj(9t1)=9p4p!^7vq(6j3f6^'
+SECRET_KEY = 'some_sample_value'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['heidiwhite.net', 'www.heidiwhite.net']
+ALLOWED_HOSTS = ['allowed.host.ca']
 
 
 # Application definition
@@ -78,10 +78,10 @@ WSGI_APPLICATION = 'astroindigenous.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'astroindigenous',
-        'USER': 'hwhite',
-        'PASSWORD': 'lilith31',
-        'HOST': 'mysql.heidiwhite.net',
+        'NAME': 'db_name',
+        'USER': 'db_user',
+        'PASSWORD': 'db_pass',
+        'HOST': 'db_host',
         'PORT': '3306',
     }
 }
@@ -121,7 +121,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT = '/home/dh_bv2ah4/heidiwhite.net/public/static'
+STATIC_ROOT = '/home/user/app/public/static'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
