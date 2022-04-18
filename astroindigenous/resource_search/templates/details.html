@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.1.0/zephyr/bootstrap.min.css" integrity="sha512-Umfd1SfiiYbs1yz/Eqt2qh/lfZeKFvbMwJPrpoptPwtD2PkNOv9lmu4Jq9kqga2XP+eE82bNDIoHZ8i1SYiY1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+        <!-- FontAwesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <title>{{ result.title }}</title>
+    </head>
+    <body>
+        <nav class="navbar navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <span class="d-inline-block align-text-middle">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                    </span>
+                    AstroIndigenous Resource Details
+                </a>
+            </div>
+        </nav>
+
+        <div class="container">
+
+			<dl class="row">
+			  <dt class="col-sm-3">Title</dt>
+			  <dd class="col-sm-9">{{ result.title }}</dd>
+
+			  <dt class="col-sm-3">Author</dt>
+			  <dd class="col-sm-9">{{ result.author }}</dd> <!-- Maybe a symbol here IF an indigenous_author? -->
+
+			  <dt class="col-sm-3">Year</dt>
+			  <dd class="col-sm-9">{{ result.year }}</dd>
+
+			  <!-- For each of these fields.. iterate and put in a single row as nice little banner items:
+			    tags = models.ManyToManyField(Tag)
+			    formats = models.ManyToManyField(Format)
+			    languages = models.ManyToManyField(Language)
+			  -->
+
+			  <dt class="col-sm-3 text-truncate">Summary</dt>
+			  <dd class="col-sm-9">{{ result.summary }}</dd>
+
+			  <dt class="col-sm-3">Links</dt>
+			  <dd class="col-sm-9"><a href="{{ result.links }}">{{ result.links }}</a></dd>
+			</dl>
+
+
+        </div>
+        <!-- Bootstrap JS Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+        <!-- FontAwesome JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js" integrity="sha512-Tn2m0TIpgVyTzzvmxLNuqbSJH3JP8jm+Cy3hvHrW7ndTDcJ1w5mBiksqDBb8GpE2ksktFvDB/ykZ0mDpsZj20w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    </body>
+</html>

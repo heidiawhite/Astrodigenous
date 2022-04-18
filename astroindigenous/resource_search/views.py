@@ -1,5 +1,5 @@
 from django.db.models import Q
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from resource_search.models import Resource
 
 # Create your views here.
@@ -36,4 +36,11 @@ def search(request):
     return render(request, "results.html", context={
         'results': results,
         'search_text': search_text
+    })
+
+def details(request, rec_id):
+    result = get_object_or_404(Resource, id=rec_id)
+
+    return render(request, "details.html", context={
+        'result': result
     })
