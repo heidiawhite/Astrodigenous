@@ -39,7 +39,7 @@
                 {% if results %}
                 <h4> Found {{ results | length }} result{{ results | length | pluralize }}!</h4>
                 {% for result in results %}
-                <div class="card" style="width: 55rem;">
+                <div class="card" style="margin-top: 15px;">
                     <div class="card-body">
                         <h5 class="card-title">{{ result.title }}</h5>
                         <h6 class="card-subtitle mb-2 text-muted">{{ result.author }}</h6>
