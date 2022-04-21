@@ -10,35 +10,32 @@ def home(request):
     return render(request, "home.html", context={ 'tags': all_tags() })
 
 def search(request):
-    search_text = request.POST.get("searchText", "")
+    search_terms = request.POST.getlist("searchText")
     pub_format = request.POST.get("contentType", "")
-    
-    # ------ original results
-    # results = Resource.objects.filter(
-    #     Q(author__icontains=search_text) |
-    #     Q(title__icontains=search_text) |
-    #     Q(summary__icontains=search_text)
-    # )
-    # ------ search below finds all db entries matching ANY search term
-    search_terms = search_text.split(sep=' ')
-    # results = Resource.objects.none()
-    # for term in search_terms:
-    #     results_temp = Resource.objects.filter(Q(author__icontains=term) | Q(title__icontains=term) | Q(summary__icontains=term))
-    #     results = results | results_temp
-    # ------ search below finds all db entries matching ALL search terms
-    allresources = Resource.objects.all()
-    results = None
-    for term in search_terms:
-        if results == None:
-            results = allresources.filter(Q(author__icontains=term) | Q(title__icontains=term) | Q(summary__icontains=term))
-        else:
-            results = results.filter(Q(author__icontains=term) | Q(title__icontains=term) | Q(summary__icontains=term))
 
+    # Start with only resources that have one-or-more tags that were search
+    scope = Resource.objects.filter(tags__name__in=search_terms)
+
+    # If no resources existed with those tags, fall back to all resources
+    if not scope.exists():
+        scope = Resource.objects.all()
+
+    # For each provided search_term, check if it matches one of (OR)
+    # our "interesting fields" (the ones we index for searching)
+    for search_term in search_terms:
+        scope = scope.filter(Q(author__icontains=search_term) |
+                             Q(title__icontains=search_term)  |
+                             Q(summary__icontains=search_term))
+
+    # If the published format is provided, restrict to those
+    # resources only
     if pub_format:
-        results = results.filter(formats__name__icontains=pub_format)
+        scope = scope.filter(formats__name__icontains=pub_format)
+
+    # Render results to template.
     return render(request, "results.html", context={
-        'results': results,
-        'search_text': search_text,
+        'results': scope,
+        'search_text': ' '.join(search_terms),
         'tags': all_tags()
     })
 

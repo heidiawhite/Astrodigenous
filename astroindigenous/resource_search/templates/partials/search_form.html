@@ -1,0 +1,30 @@
+<form id="search-form" action="/q" method="POST">
+	{% csrf_token %}
+	<div class="mb-3">
+		<label for="search-text" class="form-label">Search Text:</label>
+		<select multiple name="searchText" id="search-text" class="form-control">
+			{% for tag in tags %}
+			<option value="{{ tag }}"> {{ tag | capfirst }} </option>
+			{% endfor %}
+		</select>
+	</div>
+	<div class="mb-3">
+		<div class="form-check form-check-inline">
+			<input class="form-check-input" type="radio" name="contentType" id="ct-text" value="text">
+			<label class="form-check-label" for="ct-text">Text</label>
+		</div>
+		<div class="form-check form-check-inline">
+			<input class="form-check-input" type="radio" name="contentType" id="ct-audio" value="audio">
+			<label class="form-check-label" for="ct-audio">Audio</label>
+		</div>
+		<div class="form-check form-check-inline">
+			<input class="form-check-input" type="radio" name="contentType" id="ct-visual" value="visual">
+			<label class="form-check-label" for="ct-visual">Visual</label>
+		</div>
+		<div class="form-check form-check-inline">
+			<input class="form-check-input" type="radio" name="contentType" id="ct-all" value="">
+			<label class="form-check-label" for="ct-all">All</label>
+		</div>
+	</div>
+	<button type="submit" id="search-form-submit" class="btn btn-primary">Submit</button>
+</form>
