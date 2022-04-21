@@ -31,7 +31,7 @@ def search(request):
 
     # Render results to template.
     return render(request, "results.html", context={
-        'results': scope,
+        'results': scope.distinct(),
         'search_text': ' '.join(search_terms),
         'tags': all_tags()
     })
