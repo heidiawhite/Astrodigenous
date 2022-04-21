@@ -5,30 +5,5 @@
 {% endblock %}
 
 {% block content %}
-            <form id="search-form" action="/q" method="POST">
-                {% csrf_token %}
-                <div class="mb-3">
-                    <label for="search-text" class="form-label">Search Text:</label>
-                    <input name="searchText" type="text" id="search-text" class="form-control" placeholder="Enter your search text here">
-                </div>
-                <div class="mb-3">
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="contentType" id="ct-text" value="text">
-                        <label class="form-check-label" for="ct-text">Text</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="contentType" id="ct-audio" value="audio">
-                        <label class="form-check-label" for="ct-audio">Audio</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="contentType" id="ct-visual" value="visual">
-                        <label class="form-check-label" for="ct-visual">Visual</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="contentType" id="ct-all" value="">
-                        <label class="form-check-label" for="ct-all">All</label>
-                    </div>
-                </div>
-                <button type="submit" id="search-form-submit" class="btn btn-primary">Submit</button>
-            </form>
+  {% include "partials/search_form.html" %}
 {% endblock %}

@@ -10,7 +10,11 @@
 
         <!-- FontAwesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+        <!-- Chosen -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css" integrity="sha512-yVvxUQV0QESBt1SyZbNJMAwyKvFTLMyXSyBHDO4BG5t7k/Lw34tyqlSDlKIrIENIzCl+RVUNjmCPG+V/GMesRw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<title>{% block title %}AstroIndigenous Resource Search{% endblock %}</title>
+
     </head>
     <body>
         <nav class="navbar navbar-light bg-light">
@@ -34,6 +38,46 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js" integrity="sha512-Tn2m0TIpgVyTzzvmxLNuqbSJH3JP8jm+Cy3hvHrW7ndTDcJ1w5mBiksqDBb8GpE2ksktFvDB/ykZ0mDpsZj20w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js" integrity="sha512-rMGGF4wg1R73ehtnxXBt5mbUfN9JUJwbk21KMlnLZDJh7BkPmeovBuddZCENJddHYYMkCh9hPFnPmS9sspki8g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+        <script defer>
+		$( document ).ready(function () {
+		var select, chosen;
+
+		// Cache the select element as we'll be using it a few times
+		select = $("#search-text");
+
+		// Exit if the search text is not present.
+		if (select.length === 0 ) return;
+
+		// Init the chosen plugin
+		select.chosen({
+			no_results_text: 'Press Enter to add new entry:',
+			placeholder_text_multiple: 'Please enter your search text'
+		});
+
+		// get the chosen object (any type, single or multiple)
+		// chosen = $('.chosen-container');
+		// chosen = $('.chosen-select-single');
+		chosen = $('.chosen-container-multi');
+
+		// Bind the keyup event to the search box input
+		chosen.find('input').keyup(function(e) {
+			// If we hit Enter and the results list is empty (no matches) add the option
+			if (e.which === 13 && chosen.find('li.no-results').length > 0) {
+				var option = $("<option>").val(this.value).text(this.value);
+
+				// Add the new option
+				select.prepend(option);
+				// Automatically select it
+				select.find(option).prop('selected', true);
+				// Trigger the update
+				select.trigger("chosen:updated");
+			}
+		});
+	});
+      </script>
     </body>
 </html>
 

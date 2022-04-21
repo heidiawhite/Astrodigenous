@@ -1,10 +1,13 @@
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
-from resource_search.models import Resource
+from resource_search.models import Resource, Tag
 
 # Create your views here.
+def all_tags():
+    return Tag.objects.all()
+    
 def home(request):
-    return render(request, "home.html")
+    return render(request, "home.html", context={ 'tags': all_tags() })
 
 def search(request):
     search_text = request.POST.get("searchText", "")
@@ -35,7 +38,8 @@ def search(request):
         results = results.filter(formats__name__icontains=pub_format)
     return render(request, "results.html", context={
         'results': results,
-        'search_text': search_text
+        'search_text': search_text,
+        'tags': all_tags()
     })
 
 def details(request, rec_id):
