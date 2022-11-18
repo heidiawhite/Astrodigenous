@@ -26,6 +26,6 @@ urlpatterns = [
 ]
 
 #changes the titles of the Django admin pages
-admin.site.site_header  =  "Astroindigenous Resource Database"  
-admin.site.site_title  =  "Astroindigenous Resource DB"
+admin.site.site_header  =  "Astrodigenous Resource Database"
+admin.site.site_title  =  "Astrodigenous Resource DB"
 admin.site.index_title  =  "Admin Portal"
