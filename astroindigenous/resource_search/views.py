@@ -15,11 +15,11 @@ def search(request):
 
     # If the published format is provided, restrict to those
     # resources only
+    scope = Resource.objects.all()
     if pub_format:
-        scope = Resource.objects.all()
-        scope = scope.filter(formats__name__icontains=pub_format)
+        scope = scope.filter(active=True, formats__name__icontains=pub_format)
     else:
-        scope = Resource.objects.all()
+        scope = scope.filter(active=True)
 
     # For each provided search_term, check if it matches one of (OR)
     # our "interesting fields" (the ones we index for searching)
