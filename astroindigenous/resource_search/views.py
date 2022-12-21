@@ -16,6 +16,7 @@ def search(request):
     # If the published format is provided, restrict to those
     # resources only
     if pub_format:
+        scope = Resource.objects.all()
         scope = scope.filter(formats__name__icontains=pub_format)
     else:
         scope = Resource.objects.all()
