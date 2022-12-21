@@ -46,11 +46,13 @@ class Resource(models.Model):
     links = models.TextField()
     rec_type = models.CharField(max_length=128)
     summary = models.TextField(blank = True)
-    indigenous_author = models.BooleanField(choices = INDIGENOUS_AUTHOR_CHOICES, null = True) 
+    indigenous_author = models.BooleanField(choices = INDIGENOUS_AUTHOR_CHOICES, null=True, blank=True) 
     year = models.CharField(blank=True, max_length=32)
     tags = models.ManyToManyField(Tag)
     formats = models.ManyToManyField(Format)
     languages = models.ManyToManyField(Language)
+    active = models.BooleanField()
+
 
     def links_as_list(self):
         return self.links.split(',')
