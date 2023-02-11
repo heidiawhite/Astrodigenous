@@ -21,6 +21,7 @@ from resource_search.views import home, search, details
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('q', search),
+    path('skyviewer/', include('sky_viewer.urls')),
     path('resource/<int:rec_id>/', details),
     path('', home)
 ]
